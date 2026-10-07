@@ -1,0 +1,11 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { site } from '../../config';
+---
+<Layout title="Kiitos tilauksesta | ARR-Palvelut" description="Tilaus vastaanotettu.">
+  <section class="sec"><div class="wrap">
+    <h1>Kiitos, tilaus on vastaanotettu</h1>
+    <p>Vahvistamme hinnan ja noutopäivän puhelimella tai tekstiviestillä. Kiireelliset asiat: <a href={`tel:${site.phoneIntl}`}>{site.phone}</a>.</p>
+    <p><a href="/">Takaisin etusivulle</a></p>
+  </div></section>
+</Layout>

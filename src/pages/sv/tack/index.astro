@@ -1,0 +1,11 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { site } from '../../../config';
+---
+<Layout lang="sv" title="Tack för beställningen | ARR-Palvelut" description="Beställningen har tagits emot.">
+  <section class="sec"><div class="wrap">
+    <h1>Tack, beställningen har tagits emot</h1>
+    <p>Vi bekräftar pris och hämtningsdag per telefon eller sms. Brådskande ärenden: <a href={`tel:${site.phoneIntl}`}>{site.phone}</a>.</p>
+    <p><a href="/sv/">Tillbaka</a></p>
+  </div></section>
+</Layout>

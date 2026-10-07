@@ -1,0 +1,72 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import OrderForm from '../../components/OrderForm.astro';
+import { site, price, areas, eur } from '../../config';
+---
+<Layout
+  lang="sv"
+  title={`Hämtning av trädgårdsavfall i storsäck | ${eur(price.firstBag)} | ARR-Palvelut`}
+  description={`Vi hämtar löv, ris och trädgårdsavfall i storsäck i Västra Nyland. Första säcken gratis, hämtning ${eur(price.firstBag)} inkl. avfallsavgift och ny säck.`}
+>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Hämtning av trädgårdsavfall i storsäck</h1>
+        <p class="lead">Vi levererar den första storsäcken gratis. Fyll den med löv, ris och krattavfall, så hämtar vi den till fast pris och lämnar en ny säck i stället. Avfallsavgiften ingår.</p>
+        <div class="cta-row">
+          <a class="btn btn-wa" href="?tilaus=ilmainen#bestall">Beställ gratis säck</a>
+          <a class="btn btn-ghost" href="?tilaus=nouto#bestall">Beställ hämtning</a>
+          <a class="btn btn-ghost" href={`mailto:${site.email}`}>{site.email}</a>
+        </div>
+      </div>
+      <aside class="price-card" aria-label="Pris">
+        <div class="price-row free"><span>Första tomma säcken</span><span>0 €</span></div>
+        <div class="big">{eur(price.firstBag)}</div>
+        <div class="unit">hämtning av full storsäck (1 m³)</div>
+        <div class="price-row"><span>Extra säck från samma adress</span><span>{eur(price.extraBag)}</span></div>
+        <ul>
+          <li>Hämtning med kranbil</li>
+          <li>Avfallsavgift</li>
+          <li>Ny tom säck</li>
+        </ul>
+        <p class="vat">Priserna inkluderar moms {price.vatPct} %.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <h2>Så fungerar det</h2>
+      <ol class="steps">
+        <li><h3>Beställ gratis säck</h3><p>Vi levererar en storsäck på 1 m³ gratis. En egen storsäck med lyftöglor duger också.</p></li>
+        <li><h3>Fyll och beställ hämtning</h3><p>När säcken är full, beställ hämtning via formuläret eller e-post. Vi bekräftar dagen.</p></li>
+        <li><h3>Vi hämtar och byter</h3><p>Vi lyfter den fulla säcken och lämnar en tom. Du behöver inte vara hemma.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec alt">
+    <div class="wrap">
+      <h2>Vad får man lägga i säcken</h2>
+      <div class="two">
+        <div class="box yes"><h3>Ja</h3><ul><li>Löv och krattavfall</li><li>Ris och grenar</li><li>Gräsklipp</li><li>Växtavfall från rabatter och buskar</li></ul></div>
+        <div class="box no"><h3>Inte i samma säck</h3><ul><li>Jord, sand och sten</li><li>Stubbar</li><li>Plast, skräp och byggavfall</li><li>Invasiva arter, t.ex. vresros och jätteloka (fråga separat)</li></ul></div>
+      </div>
+      <p style="margin-top:20px">Ställ säcken på plant underlag cirka 5 meter från körbar väg så att kranen når den.</p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <h2>Område</h2>
+      <p>Vi hämtar i {areas.map((a) => a.sv ?? a.name).join(', ')}.</p>
+    </div>
+  </section>
+
+  <section class="sec alt" id="bestall">
+    <div class="wrap">
+      <h2>Beställ gratis säck eller hämtning</h2>
+      <OrderForm lang="sv" />
+    </div>
+  </section>
+</Layout>

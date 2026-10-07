@@ -1,0 +1,67 @@
+---
+import { site, areas } from '../config';
+interface Props { lang?: 'fi' | 'sv'; defaultArea?: string }
+const { lang = 'fi', defaultArea } = Astro.props;
+const t = lang === 'sv'
+  ? {
+      subject: 'Ny beställning: trädgårdsavfall',
+      name: 'Namn', phone: 'Telefon', email: 'E-post', address: 'Gatuadress', area: 'Kommun',
+      what: 'Jag vill', need: 'ha en gratis storsäck levererad', own: 'beställa hämtning av en fylld säck',
+      bags: 'Antal säckar', info: 'Mer information (var säcken står, portkod osv.)', send: 'Skicka',
+      fine: 'Vi bekräftar leverans eller hämtning per telefon, sms eller e-post.',
+      redirect: '/sv/tack/',
+    }
+  : {
+      subject: 'Uusi tilaus: puutarhajäte',
+      name: 'Nimi', phone: 'Puhelin', email: 'Sähköposti', address: 'Katuosoite', area: 'Kunta',
+      what: 'Haluan', need: 'ilmaisen suursäkin pihaani', own: 'tilata täyden säkin noudon',
+      bags: 'Säkkien määrä', info: 'Lisätiedot (missä säkki on, porttikoodi tms.)', send: 'Lähetä',
+      fine: 'Vahvistamme toimituksen tai noudon puhelimella, tekstiviestillä tai sähköpostilla.',
+      redirect: '/kiitos/',
+    };
+---
+<form class="form" id="tilauslomake" action="https://api.web3forms.com/submit" method="POST">
+  <input type="hidden" name="access_key" value={site.web3formsKey} />
+  <input type="hidden" name="subject" value={t.subject} />
+  <input type="hidden" name="from_name" value="arr-palvelut.fi" />
+  <input type="hidden" name="redirect" value={new URL(t.redirect, site.url).href} />
+  <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" />
+  <fieldset class="choice">
+    <legend>{t.what}</legend>
+    <label><input type="radio" name="tilaus" value={t.need} data-kind="ilmainen" checked /> {t.need}</label>
+    <label><input type="radio" name="tilaus" value={t.own} data-kind="nouto" /> {t.own}</label>
+  </fieldset>
+  <div class="row">
+    <label>{t.name}<input name="nimi" required autocomplete="name" /></label>
+    <label>{t.phone}<input name="puhelin" type="tel" required autocomplete="tel" /></label>
+  </div>
+  <label>{t.email}<input name="email" type="email" autocomplete="email" /></label>
+  <div class="row">
+    <label>{t.address}<input name="osoite" required autocomplete="street-address" /></label>
+    <label>{t.area}
+      <select name="kunta" required>
+        {areas.map((a) => (
+          <option value={a.name} selected={a.name === defaultArea}>{lang === 'sv' && a.sv ? a.sv : a.name}</option>
+        ))}
+        <option value="Muu">{lang === 'sv' ? 'Annan' : 'Muu'}</option>
+      </select>
+    </label>
+  </div>
+  <div class="row">
+    <label>{t.bags}<input name="saekit" type="number" min="1" max="20" value="1" required /></label>
+  </div>
+  <label>{t.info}<textarea name="lisatiedot" rows="3"></textarea></label>
+  <div class="cta-row" style="margin-top:4px">
+    <button class="btn btn-primary" type="submit">{t.send}</button>
+  </div>
+  <p class="fine">{t.fine}</p>
+</form>
+<script is:inline>
+  // ?tilaus=nouto valitsee noudon, oletus on ilmainen säkki
+  (function () {
+    var k = new URLSearchParams(location.search).get('tilaus');
+    if (!k) return;
+    var r = document.querySelector('#tilauslomake input[data-kind="' + k + '"]');
+    if (r) r.checked = true;
+  })();
+</script>

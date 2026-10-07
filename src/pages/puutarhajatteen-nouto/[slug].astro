@@ -1,0 +1,9 @@
+---
+import ServicePage from '../../components/ServicePage.astro';
+import { areas } from '../../config';
+export function getStaticPaths() {
+  return areas.map((area) => ({ params: { slug: area.slug }, props: { area } }));
+}
+const { area } = Astro.props;
+---
+<ServicePage area={area} />

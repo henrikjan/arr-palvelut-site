@@ -1,0 +1,89 @@
+---
+import { site, price, areas } from '../config';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  lang?: 'fi' | 'sv';
+  areaName?: string;
+}
+const { title, description, lang = 'fi', areaName } = Astro.props;
+const canonical = new URL(Astro.url.pathname, site.url).href;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: site.legalName,
+  url: site.url,
+  telephone: site.phoneIntl,
+  email: site.email,
+  ...(site.businessId ? { vatID: site.businessId } : {}),
+  areaServed: areaName
+    ? { '@type': 'City', name: areaName }
+    : areas.map((a) => ({ '@type': 'City', name: a.name })),
+  makesOffer: {
+    '@type': 'Offer',
+    name: lang === 'sv' ? 'Hämtning av trädgårdsavfall i storsäck' : 'Puutarhajätteen nouto suursäkissä',
+    price: price.firstBag,
+    priceCurrency: 'EUR',
+    description:
+      lang === 'sv'
+        ? 'Fast pris per storsäck, avfallsavgift och ny säck ingår.'
+        : 'Kiinteä hinta per suursäkki, jätemaksu ja uusi säkki sisältyvät.',
+  },
+  ...(site.facebook ? { sameAs: [site.facebook] } : {}),
+};
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={lang === 'sv' ? 'sv_FI' : 'fi_FI'} />
+    <meta name="theme-color" content="#2f4a2c" />
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </head>
+  <body>
+    <header class="top">
+      <div class="wrap top-in">
+        <a class="brand" href={lang === 'sv' ? '/sv/' : '/'} aria-label="ARR-Palvelut etusivu">
+          <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><path d="M7 9h18l-2 18H9z" fill="#c9a86a" stroke="#2f4a2c" stroke-width="2" stroke-linejoin="round"/><path d="M11 9V6m10 3V6" stroke="#2f4a2c" stroke-width="2" stroke-linecap="round"/><path d="M12 18c2-3 6-3 8 0" stroke="#2f4a2c" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+          <span>ARR-Palvelut</span>
+        </a>
+        <nav class="top-nav">
+          {lang === 'fi' ? <a href="/sv/" hreflang="sv">På svenska</a> : <a href="/" hreflang="fi">Suomeksi</a>}
+          <a class="tel" href={lang === 'sv' ? '/sv/?tilaus=ilmainen#bestall' : '/?tilaus=ilmainen#tilaa'}>{lang === 'sv' ? 'Gratis säck' : 'Ilmainen säkki'}</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="foot">
+      <div class="wrap">
+        <p><strong>{site.legalName}</strong>{site.businessId && <> · Y-tunnus {site.businessId}</>}</p>
+        <p>
+          {site.contactName} · <a href={`tel:${site.phoneIntl}`}>{site.phone}</a> · <a href={`mailto:${site.email}`}>{site.email}</a>
+        </p>
+        <p class="foot-areas">
+          {areas.map((a, i) => (
+            <>
+              {i > 0 && ' · '}
+              <a href={`/puutarhajatteen-nouto/${a.slug}/`}>{a.name}</a>
+            </>
+          ))}
+        </p>
+        <p><a href="/tietosuoja/">Tietosuojaseloste</a>{site.facebook && <> · <a href={site.facebook}>Facebook</a></>}</p>
+      </div>
+    </footer>
+  </body>
+</html>

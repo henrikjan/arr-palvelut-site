@@ -1,0 +1,21 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { site } from '../../config';
+---
+<Layout title="Tietosuojaseloste | ARR-Palvelut" description="Miten käsittelemme tilauslomakkeen tietoja.">
+  <section class="sec"><div class="wrap" style="max-width:720px">
+    <h1>Tietosuojaseloste</h1>
+    <h2>Rekisterinpitäjä</h2>
+    <p>{site.legalName}{site.businessId && <>, Y-tunnus {site.businessId}</>}. Yhteyshenkilö {site.contactName}, <a href={`mailto:${site.email}`}>{site.email}</a>, {site.phone}.</p>
+    <h2>Mitä tietoja keräämme</h2>
+    <p>Tilauslomakkeella, sähköpostilla tai Facebookin kautta annetut tiedot: nimi, puhelinnumero, sähköposti, osoite, säkkien määrä ja lisätiedot.</p>
+    <h2>Käyttötarkoitus ja peruste</h2>
+    <p>Tietoja käytetään säkin toimituksen ja noudon sopimiseen, toteuttamiseen ja laskutukseen. Käsittelyn peruste on sopimus tai sitä edeltävät toimenpiteet sekä kirjanpitolain mukaiset velvoitteet.</p>
+    <h2>Vastaanottajat</h2>
+    <p>Lomakkeen tiedot välitetään sähköpostiimme Web3Forms-palvelun kautta. Facebookin kautta tulleet yhteydenotot käsitellään Metan palveluissa. Tietoja ei myydä eikä luovuteta markkinointiin.</p>
+    <h2>Säilytysaika</h2>
+    <p>Tilaustiedot säilytetään asiakassuhteen ajan. Laskutustiedot säilytetään kirjanpitolain edellyttämän ajan.</p>
+    <h2>Oikeutesi</h2>
+    <p>Voit pyytää omien tietojesi tarkastamista, korjaamista tai poistamista ottamalla yhteyttä yllä olevaan osoitteeseen. Voit tehdä valituksen tietosuojavaltuutetulle.</p>
+  </div></section>
+</Layout>

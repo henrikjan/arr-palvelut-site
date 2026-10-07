@@ -1,0 +1,142 @@
+---
+import Layout from '../layouts/Layout.astro';
+import OrderForm from './OrderForm.astro';
+import { site, price, areas, eur, type Area } from '../config';
+
+interface Props { area?: Area }
+const { area } = Astro.props;
+
+const h1 = area ? `Puutarhajätteen nouto ${area.inessive}` : 'Puutarhajätteen nouto suursäkissä';
+const title = area
+  ? `Puutarhajätteen nouto ${area.name} | Suursäkki ${eur(price.firstBag)} | ARR-Palvelut`
+  : `Puutarhajätteen nouto suursäkissä | Kiinteä hinta | ARR-Palvelut`;
+const description = area
+  ? `Puutarhajätteen ja risujen nouto suursäkissä ${area.inessive}. Ensimmäinen säkki ilmaiseksi, nouto ${eur(price.firstBag)} sis. jätemaksun ja uuden säkin.`
+  : `Haemme lehdet, risut ja haravointijätteen suursäkissä Länsi-Uudellamaalla. Ensimmäinen säkki ilmaiseksi, nouto ${eur(price.firstBag)} sis. jätemaksun ja uuden säkin.`;
+const two = price.firstBag + price.extraBag;
+const three = price.firstBag + 2 * price.extraBag;
+---
+<Layout title={title} description={description} areaName={area?.name}>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>{h1}</h1>
+        <p class="lead">
+          Tuomme ensimmäisen suursäkin ilmaiseksi. Täytä se lehdillä, risuilla ja haravointijätteellä, niin haemme sen kiinteällä hinnalla ja jätämme tilalle uuden säkin. Jätemaksu sisältyy hintaan.
+        </p>
+        {area && <p class="lead">Noudamme {area.inessive}: {area.places.join(', ')} ja lähialueet.</p>}
+        <div class="cta-row">
+          <a class="btn btn-wa" href="?tilaus=ilmainen#tilaa">Tilaa ilmainen säkki</a>
+          <a class="btn btn-ghost" href="?tilaus=nouto#tilaa">Tilaa nouto</a>
+          <a class="btn btn-ghost" href={`mailto:${site.email}`}>{site.email}</a>
+        </div>
+      </div>
+      <aside class="price-card" aria-label="Hinta">
+        <div class="price-row free"><span>Ensimmäinen tyhjä säkki</span><span>0 €</span></div>
+        <div class="big">{eur(price.firstBag)}</div>
+        <div class="unit">täyden suursäkin (1 m³) nouto</div>
+        <div class="price-row"><span>Lisäsäkki samasta osoitteesta</span><span>{eur(price.extraBag)}</span></div>
+        <div class="price-row"><span>2 säkkiä</span><span>{eur(two)}</span></div>
+        <div class="price-row"><span>3 säkkiä</span><span>{eur(three)}</span></div>
+        <ul>
+          <li>Nouto nosturiautolla</li>
+          <li>Jätemaksu</li>
+          <li>Uusi tyhjä säkki tilalle</li>
+        </ul>
+        <p class="vat">Hinnat sisältävät alv {price.vatPct} %.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <h2>Näin nouto toimii</h2>
+      <ol class="steps">
+        <li>
+          <h3>Tilaa ilmainen säkki</h3>
+          <p>Tuomme 1 m³ suursäkin pihaasi veloituksetta. Myös oma suursäkki nostolenkeillä käy.</p>
+        </li>
+        <li>
+          <h3>Täytä ja tilaa nouto</h3>
+          <p>Kun säkki on täynnä, tilaa nouto lomakkeella tai sähköpostilla. Vahvistamme noutopäivän.</p>
+        </li>
+        <li>
+          <h3>Haemme ja vaihdamme</h3>
+          <p>Nostamme täyden säkin autoon ja jätämme tyhjän tilalle. Sinun ei tarvitse olla kotona.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec alt">
+    <div class="wrap">
+      <h2>Mitä säkkiin saa laittaa</h2>
+      <div class="two">
+        <div class="box yes">
+          <h3>Kyllä</h3>
+          <ul>
+            <li>Lehdet ja haravointijäte</li>
+            <li>Risut ja oksat</li>
+            <li>Ruohonleikkuujäte</li>
+            <li>Kukkapenkkien ja pensaiden kasvijäte</li>
+          </ul>
+        </div>
+        <div class="box no">
+          <h3>Ei samaan säkkiin</h3>
+          <ul>
+            <li>Multa, hiekka ja kivet</li>
+            <li>Kannot</li>
+            <li>Muovi, roskat ja rakennusjäte</li>
+            <li>Vieraslajit, kuten kurtturuusu ja jättiputki (kysy erikseen)</li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top:20px">
+        Sijoita säkki tasaiselle alustalle noin 5 metrin päähän ajotiestä, jotta nosturi ulottuu siihen. Märkä ruoho painaa paljon, joten älä tiivistä säkkiä ylitäyteen.
+      </p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <h2>Noutoalue</h2>
+      <p>Noudamme Länsi-Uudellamaalla. Ajamme noudot alueittain, joten saman alueen tilaukset kulkevat samalla reitillä.</p>
+      <ul class="areas">
+        {areas.map((a) => <li><a href={`/puutarhajatteen-nouto/${a.slug}/`}>{a.name}</a></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec alt faq">
+    <div class="wrap">
+      <h2>Kysyttyä</h2>
+      <details>
+        <summary>Mitä hinta sisältää?</summary>
+        <p>Noudon, jätemaksun, uuden tyhjän säkin ja arvonlisäveron. Hinta on kiinteä, eikä siihen tule erillistä rahtimaksua. Ensimmäinen säkki toimitetaan ilmaiseksi, eikä se sido mihinkään.</p>
+      </details>
+      <details>
+        <summary>Mikä säkki käy?</summary>
+        <p>Meidän säkkimme tai mikä tahansa 1 m³ suursäkki, jossa on ehjät nostolenkit. Huonokuntoista säkkiä emme voi nostaa.</p>
+      </details>
+      <details>
+        <summary>Milloin säkki haetaan?</summary>
+        <p>Kerromme noutopäivän, kun vahvistamme tilauksen. Sinun ei tarvitse olla paikalla.</p>
+      </details>
+      <details>
+        <summary>Sopiiko palvelu taloyhtiölle?</summary>
+        <p>Sopii. Taloyhtiölle ja isännöitsijälle teemme kausisopimuksen kevään ja syksyn talkoisiin, jolloin säkit haetaan sovittuina viikkoina ilman erillistä tilausta.</p>
+      </details>
+      <details>
+        <summary>Mihin jäte päätyy?</summary>
+        <p>Toimitamme puutarhajätteen luvanvaraiseen vastaanottoon kierrätettäväksi.</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="tilaa">
+    <div class="wrap">
+      <h2>Tilaa ilmainen säkki tai nouto</h2>
+      <OrderForm defaultArea={area?.name} />
+    </div>
+  </section>
+</Layout>
