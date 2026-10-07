@@ -18,7 +18,9 @@ export const price = {
   firstBag: 149, // ensimmäinen säkki osoitteesta
   extraBag: 89, // jokainen lisäsäkki samasta osoitteesta samalla noudolla
   vatPct: '25,5',
-  starterBagFree: true, // ensimmäinen tyhjä säkki tuodaan veloituksetta
+  starterBagFree: true, // säkki tuodaan veloituksetta, kun asiakas tilaa samalla noudon
+  lostBagFee: 30, // laskutetaan, jos säkkiä ei palauteta noudettavaksi kauden loppuun mennessä
+  seasonEnds: '30.11. ja 15.6.', // syys- ja kevätkauden viimeiset noutopäivät
 };
 
 export type Area = {

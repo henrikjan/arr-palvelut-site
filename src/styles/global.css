@@ -78,6 +78,7 @@ p { margin: 0 0 1em; }
 .form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .form .hp { display: none; }
 .choice { border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; display: grid; gap: 8px; background: var(--white); margin: 0; }
+.form label.check { display: flex; gap: 8px; align-items: center; font-weight: 500; }
 .choice legend { font-weight: 700; padding: 0 4px; }
 .choice label { display: flex; gap: 8px; align-items: center; font-weight: 500; }
 .price-row.free { border-top: 0; margin: 0 0 12px; padding: 8px 12px; background: #e8f1e3; border-radius: 8px; color: var(--green); }

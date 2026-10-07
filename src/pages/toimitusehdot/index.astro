@@ -1,0 +1,44 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { site, price, eur } from '../../config';
+---
+<Layout title="Toimitusehdot | ARR-Palvelut" description="Puutarhajätteen noudon toimitusehdot: hinnat, säkki, maksu ja peruutus.">
+  <section class="sec"><div class="wrap" style="max-width:720px">
+    <h1>Toimitusehdot</h1>
+    <p>Palvelun tuottaa {site.legalName} (Y-tunnus {site.businessId}). Yhteys: <a href={`mailto:${site.email}`}>{site.email}</a>, {site.phone}.</p>
+
+    <h2>Palvelu ja hinta</h2>
+    <ul>
+      <li>Täyden 1 m³ suursäkin nouto {eur(price.firstBag)}, lisäsäkki samasta osoitteesta samalla noudolla {eur(price.extraBag)}.</li>
+      <li>Hinta sisältää noudon, jätemaksun, uuden tyhjän säkin ja arvonlisäveron {price.vatPct} %.</li>
+      <li>Kun tilaat noudon, tuomme ensimmäisen suursäkin veloituksetta.</li>
+    </ul>
+
+    <h2>Säkki</h2>
+    <ul>
+      <li>Toimittamamme säkki on {site.legalName}:n omaisuutta.</li>
+      <li>Säkkiin saa laittaa vain puutarhajätettä: lehtiä, risuja, oksia, ruohoa ja kasvijätettä.</li>
+      <li>Jos säkissä on muuta jätettä, laskutamme ylimääräisen käsittelyn erikseen tai jätämme säkin noutamatta.</li>
+      <li>Jos säkkiä ei ole palautettu noudettavaksi kauden loppuun mennessä ({price.seasonEnds}), haemme sen pois. Jos säkki on käytetty muuhun tai kadonnut, laskutamme siitä {eur(price.lostBagFee)}.</li>
+    </ul>
+
+    <h2>Nouto</h2>
+    <ul>
+      <li>Noutopäivä sovitaan tilauksen vahvistuksessa. Noudot ajetaan alueittain reittipäivinä.</li>
+      <li>Säkin on oltava tasaisella alustalla enintään noin 5 metrin päässä ajotiestä, jotta nosturi ulottuu siihen.</li>
+      <li>Jos noutoa ei voida tehdä asiakkaasta johtuvasta syystä, siirrämme sen seuraavalle reitille.</li>
+    </ul>
+
+    <h2>Maksu</h2>
+    <p>Lasku lähetetään noudon jälkeen sähköpostilla, maksuaika 14 päivää.</p>
+
+    <h2>Peruutus</h2>
+    <ul>
+      <li>Tilauksen voi perua maksutta ilmoittamalla siitä sähköpostilla ennen noutoa. Haemme tyhjän säkin pois.</li>
+      <li>Kuluttaja-asiakkaalla on kuluttajansuojalain mukainen 14 päivän peruuttamisoikeus etämyynnissä.</li>
+    </ul>
+
+    <h2>Reklamaatiot</h2>
+    <p>Ilmoita mahdollisista virheistä sähköpostilla viipymättä. Kuluttaja voi viedä erimielisyyden kuluttajariitalautakunnan käsiteltäväksi.</p>
+  </div></section>
+</Layout>

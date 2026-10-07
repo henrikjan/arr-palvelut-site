@@ -11,8 +11,8 @@ const title = area
   ? `Puutarhajätteen nouto ${area.name} | Suursäkki ${eur(price.firstBag)} | ARR-Palvelut`
   : `Puutarhajätteen nouto suursäkissä | Kiinteä hinta | ARR-Palvelut`;
 const description = area
-  ? `Puutarhajätteen ja risujen nouto suursäkissä ${area.inessive}. Ensimmäinen säkki ilmaiseksi, nouto ${eur(price.firstBag)} sis. jätemaksun ja uuden säkin.`
-  : `Haemme lehdet, risut ja haravointijätteen suursäkissä Länsi-Uudellamaalla. Ensimmäinen säkki ilmaiseksi, nouto ${eur(price.firstBag)} sis. jätemaksun ja uuden säkin.`;
+  ? `Puutarhajätteen ja risujen nouto suursäkissä ${area.inessive}. Säkki ilmaiseksi, kun tilaat noudon: ${eur(price.firstBag)} sis. jätemaksun.`
+  : `Haemme lehdet, risut ja haravointijätteen suursäkissä Länsi-Uudellamaalla. Säkki ilmaiseksi, kun tilaat noudon: ${eur(price.firstBag)} sis. jätemaksun.`;
 const two = price.firstBag + price.extraBag;
 const three = price.firstBag + 2 * price.extraBag;
 ---
@@ -22,17 +22,17 @@ const three = price.firstBag + 2 * price.extraBag;
       <div>
         <h1>{h1}</h1>
         <p class="lead">
-          Tuomme ensimmäisen suursäkin ilmaiseksi. Täytä se lehdillä, risuilla ja haravointijätteellä, niin haemme sen kiinteällä hinnalla ja jätämme tilalle uuden säkin. Jätemaksu sisältyy hintaan.
+          Tilaa nouto, niin tuomme suursäkin pihaasi ilmaiseksi. Täytä se lehdillä, risuilla ja haravointijätteellä, ja haemme sen sovittuna päivänä kiinteällä hinnalla. Jätemaksu sisältyy hintaan.
         </p>
         {area && <p class="lead">Noudamme {area.inessive}: {area.places.join(', ')} ja lähialueet.</p>}
         <div class="cta-row">
-          <a class="btn btn-wa" href="?tilaus=ilmainen#tilaa">Tilaa ilmainen säkki</a>
-          <a class="btn btn-ghost" href="?tilaus=nouto#tilaa">Tilaa nouto</a>
+          <a class="btn btn-wa" href="?tilaus=ilmainen#tilaa">Tilaa säkki ja nouto</a>
+          <a class="btn btn-ghost" href="?tilaus=nouto#tilaa">Nouto omalle säkille</a>
           <a class="btn btn-ghost" href={`mailto:${site.email}`}>{site.email}</a>
         </div>
       </div>
       <aside class="price-card" aria-label="Hinta">
-        <div class="price-row free"><span>Ensimmäinen tyhjä säkki</span><span>0 €</span></div>
+        <div class="price-row free"><span>Säkki noudon tilaajalle</span><span>0 €</span></div>
         <div class="big">{eur(price.firstBag)}</div>
         <div class="unit">täyden suursäkin (1 m³) nouto</div>
         <div class="price-row"><span>Lisäsäkki samasta osoitteesta</span><span>{eur(price.extraBag)}</span></div>
@@ -53,12 +53,12 @@ const three = price.firstBag + 2 * price.extraBag;
       <h2>Näin nouto toimii</h2>
       <ol class="steps">
         <li>
-          <h3>Tilaa ilmainen säkki</h3>
-          <p>Tuomme 1 m³ suursäkin pihaasi veloituksetta. Myös oma suursäkki nostolenkeillä käy.</p>
+          <h3>Tilaa säkki ja nouto</h3>
+          <p>Tuomme 1 m³ suursäkin pihaasi veloituksetta ja sovimme samalla noutopäivän. Myös oma suursäkki nostolenkeillä käy.</p>
         </li>
         <li>
-          <h3>Täytä ja tilaa nouto</h3>
-          <p>Kun säkki on täynnä, tilaa nouto lomakkeella tai sähköpostilla. Vahvistamme noutopäivän.</p>
+          <h3>Täytä säkki</h3>
+          <p>Täytä säkki sovittuun päivään mennessä. Jos tarvitset lisäaikaa, siirrämme noudon seuraavalle reitille.</p>
         </li>
         <li>
           <h3>Haemme ja vaihdamme</h3>
@@ -112,7 +112,11 @@ const three = price.firstBag + 2 * price.extraBag;
       <h2>Kysyttyä</h2>
       <details>
         <summary>Mitä hinta sisältää?</summary>
-        <p>Noudon, jätemaksun, uuden tyhjän säkin ja arvonlisäveron. Hinta on kiinteä, eikä siihen tule erillistä rahtimaksua. Ensimmäinen säkki toimitetaan ilmaiseksi, eikä se sido mihinkään.</p>
+        <p>Noudon, jätemaksun, uuden tyhjän säkin ja arvonlisäveron. Hinta on kiinteä, eikä siihen tule erillistä rahtimaksua. Säkki tuodaan ilmaiseksi, kun tilaat samalla noudon. Lasku lähetetään noudon jälkeen.</p>
+      </details>
+      <details>
+        <summary>Mitä jos en tarvitsekaan noutoa?</summary>
+        <p>Ilmoita meille. Haemme tyhjän säkin pois veloituksetta. Säkki on ARR-Palvelut Oy:n omaisuutta, joten jos säkki on käytetty muuhun tai kadonnut, laskutamme siitä {eur(price.lostBagFee)}. Katso <a href="/toimitusehdot/">toimitusehdot</a>.</p>
       </details>
       <details>
         <summary>Mikä säkki käy?</summary>
@@ -120,7 +124,7 @@ const three = price.firstBag + 2 * price.extraBag;
       </details>
       <details>
         <summary>Milloin säkki haetaan?</summary>
-        <p>Kerromme noutopäivän, kun vahvistamme tilauksen. Sinun ei tarvitse olla paikalla.</p>
+        <p>Sovimme noutopäivän, kun vahvistamme tilauksen. Ajamme noudot alueittain, joten päivä on reittipäivä alueellasi. Sinun ei tarvitse olla paikalla.</p>
       </details>
       <details>
         <summary>Sopiiko palvelu taloyhtiölle?</summary>
@@ -135,7 +139,7 @@ const three = price.firstBag + 2 * price.extraBag;
 
   <section class="sec" id="tilaa">
     <div class="wrap">
-      <h2>Tilaa ilmainen säkki tai nouto</h2>
+      <h2>Tilaa säkki ja nouto</h2>
       <OrderForm defaultArea={area?.name} />
     </div>
   </section>

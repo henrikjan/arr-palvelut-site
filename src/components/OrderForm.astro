@@ -1,22 +1,24 @@
 ---
-import { site, areas } from '../config';
+import { site, areas, price, eur } from '../config';
 interface Props { lang?: 'fi' | 'sv'; defaultArea?: string }
 const { lang = 'fi', defaultArea } = Astro.props;
 const t = lang === 'sv'
   ? {
       subject: 'Ny beställning: trädgårdsavfall',
       name: 'Namn', phone: 'Telefon', email: 'E-post', address: 'Gatuadress', area: 'Kommun',
-      what: 'Jag vill', need: 'ha en gratis storsäck levererad', own: 'beställa hämtning av en fylld säck',
+      what: 'Jag beställer', need: `gratis storsäck + hämtning (${eur(price.firstBag)})`, own: `hämtning av min egen säck (${eur(price.firstBag)})`,
+      terms: 'Jag godkänner', termsLink: 'leveransvillkoren',
       bags: 'Antal säckar', info: 'Mer information (var säcken står, portkod osv.)', send: 'Skicka',
-      fine: 'Vi bekräftar leverans eller hämtning per telefon, sms eller e-post.',
+      fine: 'Vi bekräftar hämtningsdagen per telefon, sms eller e-post. Faktura efter hämtningen.',
       redirect: '/sv/tack/',
     }
   : {
       subject: 'Uusi tilaus: puutarhajäte',
       name: 'Nimi', phone: 'Puhelin', email: 'Sähköposti', address: 'Katuosoite', area: 'Kunta',
-      what: 'Haluan', need: 'ilmaisen suursäkin pihaani', own: 'tilata täyden säkin noudon',
+      what: 'Tilaan', need: `ilmaisen suursäkin + noudon (${eur(price.firstBag)})`, own: `noudon omalle säkille (${eur(price.firstBag)})`,
+      terms: 'Hyväksyn', termsLink: 'toimitusehdot',
       bags: 'Säkkien määrä', info: 'Lisätiedot (missä säkki on, porttikoodi tms.)', send: 'Lähetä',
-      fine: 'Vahvistamme toimituksen tai noudon puhelimella, tekstiviestillä tai sähköpostilla.',
+      fine: 'Vahvistamme noutopäivän puhelimella, tekstiviestillä tai sähköpostilla. Lasku noudon jälkeen.',
       redirect: '/kiitos/',
     };
 ---
@@ -51,6 +53,7 @@ const t = lang === 'sv'
     <label>{t.bags}<input name="saekit" type="number" min="1" max="20" value="1" required /></label>
   </div>
   <label>{t.info}<textarea name="lisatiedot" rows="3"></textarea></label>
+  <label class="check"><input type="checkbox" name="ehdot" value="hyväksytty" required /> <span>{t.terms} <a href="/toimitusehdot/" target="_blank">{t.termsLink}</a></span></label>
   <div class="cta-row" style="margin-top:4px">
     <button class="btn btn-primary" type="submit">{t.send}</button>
   </div>

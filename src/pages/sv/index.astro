@@ -6,21 +6,21 @@ import { site, price, areas, eur } from '../../config';
 <Layout
   lang="sv"
   title={`Hämtning av trädgårdsavfall i storsäck | ${eur(price.firstBag)} | ARR-Palvelut`}
-  description={`Vi hämtar löv, ris och trädgårdsavfall i storsäck i Västra Nyland. Första säcken gratis, hämtning ${eur(price.firstBag)} inkl. avfallsavgift och ny säck.`}
+  description={`Vi hämtar löv, ris och trädgårdsavfall i storsäck i Västra Nyland. Säcken gratis när du beställer hämtning: ${eur(price.firstBag)} inkl. avfallsavgift.`}
 >
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
         <h1>Hämtning av trädgårdsavfall i storsäck</h1>
-        <p class="lead">Vi levererar den första storsäcken gratis. Fyll den med löv, ris och krattavfall, så hämtar vi den till fast pris och lämnar en ny säck i stället. Avfallsavgiften ingår.</p>
+        <p class="lead">Beställ hämtning, så levererar vi storsäcken gratis. Fyll den med löv, ris och krattavfall, så hämtar vi den på avtalad dag till fast pris. Avfallsavgiften ingår.</p>
         <div class="cta-row">
-          <a class="btn btn-wa" href="?tilaus=ilmainen#bestall">Beställ gratis säck</a>
-          <a class="btn btn-ghost" href="?tilaus=nouto#bestall">Beställ hämtning</a>
+          <a class="btn btn-wa" href="?tilaus=ilmainen#bestall">Beställ säck och hämtning</a>
+          <a class="btn btn-ghost" href="?tilaus=nouto#bestall">Hämtning av egen säck</a>
           <a class="btn btn-ghost" href={`mailto:${site.email}`}>{site.email}</a>
         </div>
       </div>
       <aside class="price-card" aria-label="Pris">
-        <div class="price-row free"><span>Första tomma säcken</span><span>0 €</span></div>
+        <div class="price-row free"><span>Säck till den som beställer hämtning</span><span>0 €</span></div>
         <div class="big">{eur(price.firstBag)}</div>
         <div class="unit">hämtning av full storsäck (1 m³)</div>
         <div class="price-row"><span>Extra säck från samma adress</span><span>{eur(price.extraBag)}</span></div>
@@ -38,8 +38,8 @@ import { site, price, areas, eur } from '../../config';
     <div class="wrap">
       <h2>Så fungerar det</h2>
       <ol class="steps">
-        <li><h3>Beställ gratis säck</h3><p>Vi levererar en storsäck på 1 m³ gratis. En egen storsäck med lyftöglor duger också.</p></li>
-        <li><h3>Fyll och beställ hämtning</h3><p>När säcken är full, beställ hämtning via formuläret eller e-post. Vi bekräftar dagen.</p></li>
+        <li><h3>Beställ säck och hämtning</h3><p>Vi levererar en storsäck på 1 m³ gratis och avtalar samtidigt hämtningsdagen. En egen storsäck med lyftöglor duger också.</p></li>
+        <li><h3>Fyll säcken</h3><p>Fyll säcken till den avtalade dagen. Behöver du mer tid flyttar vi hämtningen till nästa rutt.</p></li>
         <li><h3>Vi hämtar och byter</h3><p>Vi lyfter den fulla säcken och lämnar en tom. Du behöver inte vara hemma.</p></li>
       </ol>
     </div>
@@ -65,7 +65,7 @@ import { site, price, areas, eur } from '../../config';
 
   <section class="sec alt" id="bestall">
     <div class="wrap">
-      <h2>Beställ gratis säck eller hämtning</h2>
+      <h2>Beställ säck och hämtning</h2>
       <OrderForm lang="sv" />
     </div>
   </section>

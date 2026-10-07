@@ -3,13 +3,44 @@
 Pino sama kuin niittopartio.fi: Astro, GitHub, AWS Amplify, Web3Forms.
 Kaikki muutettavat tiedot (hinnat, yhteyshenkilö, sähköposti, Y-tunnus, Facebook, Web3Forms-avain, kunnat) ovat tiedostossa `src/config.ts`.
 
+## 0. Pikakäynnistys: nyt vs myöhemmin
+
+**Monimutkaisin asia ei ole sivusto vaan jätteen kuljetuksen rekisteröinti** (jätehuoltorekisteri, ELY/viranomainen). Ilman sitä ei saa ajaa ensimmäistä noutoa. Hae se ensimmäisenä.
+
+**Nyt (tarvitaan ensimmäiseen tilaukseen):**
+- [ ] Jätehuoltorekisterihakemus vireille
+- [ ] Domain + sähköposti tilaus@arr-palvelut.fi (Simply.com)
+- [ ] Web3Forms-avain `src/config.ts`:ään
+- [ ] Amplify kytketty repoon (toimii amplifyapp.com-osoitteessa jo ennen domainia)
+- [ ] 20-50 suursäkkiä varastoon (tukkuhinta selvitettävä)
+- [ ] Vastaanottopaikka ja hinta puutarhajätteelle sovittu (Rosk'n Roll -kontakti)
+- [ ] Laskutus: lasku noudon jälkeen, 14 pv (Holvi tai muu)
+- [ ] Facebook-sivu + ensimmäinen julkaisu
+
+**Myöhemmin (ei estä aloitusta):**
+- Säkkeihin painatus (nimi, puhelin, osoite)
+- Meta-liidilomake ja maksettu Facebook-mainonta
+- Google Ads -kampanja kuntasivuille
+- Verkkomaksu tilauksen yhteydessä (Paytrail/Stripe)
+- Reittipäiväkalenteri sivulle (asiakas valitsee noutopäivän)
+- Säkkien seuranta (kenellä säkki on, milloin tuotu)
+- Taloyhtiöiden kausisopimussivu ja isännöitsijämarkkinointi
+- Ruotsinkieliset kuntasivut ja ruotsinkieliset toimitusehdot
+- Kuluttajansuojalain mukainen peruuttamislomake ja ehtojen juristitarkistus
+
+**Sitouttamismalli (päätetty 7.10.2026):**
+- Ilmainen säkki vain noudon tilaajalle: tilaus = säkki + nouto 149 €
+- Noutopäivä sovitaan säkin tuonnin yhteydessä, reittipäivinä
+- Säkki on ARR:n omaisuutta, 30 € jos käytetty muuhun tai kadonnut (ehtojen hyväksyntä lomakkeella)
+- Säkit viedään samoilla reiteillä kuin noudot
+
 ## 1. Ennen julkaisua (pakolliset)
 
 - [ ] `web3formsKey`: uusi avain web3forms.com, vastaanottajaksi tilaus@arr-palvelut.fi
 - [x] `businessId`: 3320118-3 (tarkistettu PRH:sta)
 - [x] Yhteyshenkilö Ron Perjala 0400 522 462, ensisijaisesti lomake ja sähköposti
 - [ ] Hinnat vahvistettu (`firstBag` 149 €, `extraBag` 89 €, sis. alv 25,5 %)
-- [x] Ensimmäinen säkki ilmaiseksi (lomakkeen oletusvalinta)
+- [x] Säkki ilmaiseksi noudon tilaajalle, toimitusehdot hyväksytään lomakkeella
 - [ ] Sähköposti tilaus@arr-palvelut.fi toimii (Simply.com)
 - [ ] Jätehuoltorekisteröinti haettu ennen ensimmäistä ajoa (jätteen ammattimainen kuljettaminen)
 
@@ -73,18 +104,18 @@ Hakumääriä en pystynyt tarkistamaan (vaatii Google Ads Keyword Plannerin). Li
 - **Nimi:** ARR-Palvelut
 - **Kategoria:** Jätehuoltopalvelu (toissijainen: Puutarhanhoitopalvelu)
 - **Käyttäjänimi:** @arrpalvelut
-- **Tietoja (lyhyt):** Puutarhajätteen nouto suursäkissä Länsi-Uudellamaalla. Ensimmäinen säkki ilmaiseksi. Nouto kiinteällä hinnalla, jätemaksu ja uusi säkki sisältyvät.
+- **Tietoja (lyhyt):** Puutarhajätteen nouto suursäkissä Länsi-Uudellamaalla. Säkki ilmaiseksi noudon tilaajalle. Nouto kiinteällä hinnalla, jätemaksu ja uusi säkki sisältyvät.
 - **Painike:** Rekisteröidy (linkki https://arr-palvelut.fi/?tilaus=ilmainen#tilaa)
-- **Liidilomake (Meta Lead Ads):** kysymykset nimi, puhelin, osoite, kunta, "Haluan: ilmainen säkki / nouto". Liidit sähköpostiin tilaus@arr-palvelut.fi
+- **Liidilomake (Meta Lead Ads):** kysymykset nimi, puhelin, osoite, kunta, "Tilaan: säkki + nouto / nouto omalle säkille". Liidit sähköpostiin tilaus@arr-palvelut.fi
 - **Verkkosivu:** https://arr-palvelut.fi
 
 **Ensimmäinen julkaisu:**
 
-Ilmainen suursäkki puutarhajätteelle. Tuomme sen pihaasi Siuntiossa, Inkoossa, Lohjalla, Vihdissä, Raaseporissa ja Kirkkonummella.
+Tilaa puutarhajätteen nouto, niin tuomme suursäkin pihaasi ilmaiseksi Siuntiossa, Inkoossa, Lohjalla, Vihdissä, Raaseporissa ja Kirkkonummella.
 
-Kun säkki on täynnä, haemme sen 149 €:lla (lisäsäkit samasta osoitteesta 89 €). Hintaan sisältyy nouto, jätemaksu ja uusi tyhjä säkki tilalle.
+Haemme täyden säkin sovittuna päivänä 149 €:lla (lisäsäkit samasta osoitteesta 89 €). Hintaan sisältyy nouto, jätemaksu ja uusi tyhjä säkki tilalle.
 
-Tilaa ilmainen säkki: arr-palvelut.fi
+Tilaa säkki ja nouto: arr-palvelut.fi
 
 **Mainoksen kohdennus:** sijainti palvelukunnat, ikä 35+, kiinnostuksen kohteet puutarhanhoito ja omakotitalo, kesto syyskausi marraskuun puoliväliin.
 
