@@ -31,13 +31,14 @@ export type Area = {
   sv?: string;
 };
 
-// Rosk'n Rollin toimialueen kunnat Länsi-Uudellamaalla + kotikunta Kirkkonummi
+// Rosk'n Rollin toimialueen kunnat Länsi-Uudellamaalla + Kirkkonummi ja Espoo
 export const areas: Area[] = [
   { slug: 'siuntio', name: 'Siuntio', inessive: 'Siuntiossa', places: ['Siuntion kirkonkylä', 'Siuntion asema'], sv: 'Sjundeå' },
   { slug: 'inkoo', name: 'Inkoo', inessive: 'Inkoossa', places: ['Inkoon kirkonkylä', 'Degerby', 'Barösund'], sv: 'Ingå' },
   { slug: 'lohja', name: 'Lohja', inessive: 'Lohjalla', places: ['Lohjan keskusta', 'Virkkala', 'Karjalohja', 'Nummi', 'Sammatti'], sv: 'Lojo' },
   { slug: 'vihti', name: 'Vihti', inessive: 'Vihdissä', places: ['Nummela', 'Vihdin kirkonkylä', 'Otalampi'], sv: 'Vichtis' },
   { slug: 'raasepori', name: 'Raasepori', inessive: 'Raaseporissa', places: ['Karjaa', 'Tammisaari', 'Pohja'], sv: 'Raseborg' },
+  { slug: 'espoo', name: 'Espoo', inessive: 'Espoossa', places: ['Espoon keskus', 'Kauklahti', 'Espoonlahti', 'Kalajärvi', 'Leppävaara', 'Matinkylä'], sv: 'Esbo' },
   { slug: 'kirkkonummi', name: 'Kirkkonummi', inessive: 'Kirkkonummella', places: ['Kirkkonummen keskusta', 'Masala', 'Veikkola', 'Upinniemi'], sv: 'Kyrkslätt' },
 ];
 

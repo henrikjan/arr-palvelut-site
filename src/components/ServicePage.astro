@@ -8,11 +8,11 @@ const { area } = Astro.props;
 
 const h1 = area ? `Puutarhajätteen nouto ${area.inessive}` : 'Puutarhajätteen nouto suursäkissä';
 const title = area
-  ? `Puutarhajätteen nouto ${area.name} | Suursäkki ${eur(price.firstBag)} | ARR-Palvelut`
-  : `Puutarhajätteen nouto suursäkissä | Kiinteä hinta | ARR-Palvelut`;
+  ? `Puutarhajätteen ja risujen nouto ${area.name} | ARR-Palvelut`
+  : `Puutarhajätteen ja risujen nouto suursäkissä | ARR-Palvelut`;
 const description = area
-  ? `Puutarhajätteen ja risujen nouto suursäkissä ${area.inessive}. Säkki ilmaiseksi, kun tilaat noudon: ${eur(price.firstBag)} sis. jätemaksun.`
-  : `Haemme lehdet, risut ja haravointijätteen suursäkissä Länsi-Uudellamaalla. Säkki ilmaiseksi, kun tilaat noudon: ${eur(price.firstBag)} sis. jätemaksun.`;
+  ? `Puutarhajätteen noutopalvelu ${area.inessive}: lehdet, risut ja oksat suursäkissä. Säkki ilmaiseksi, nouto ${eur(price.firstBag)} sis. jätemaksun.`
+  : `Puutarhajätteen noutopalvelu Espoosta Raaseporiin: lehdet, risut ja oksat suursäkissä. Säkki ilmaiseksi, nouto ${eur(price.firstBag)} sis. jätemaksun.`;
 const two = price.firstBag + price.extraBag;
 const three = price.firstBag + 2 * price.extraBag;
 ---
@@ -22,7 +22,7 @@ const three = price.firstBag + 2 * price.extraBag;
       <div>
         <h1>{h1}</h1>
         <p class="lead">
-          Tilaa nouto, niin tuomme suursäkin pihaasi ilmaiseksi. Täytä se lehdillä, risuilla ja haravointijätteellä, ja haemme sen sovittuna päivänä kiinteällä hinnalla. Jätemaksu sisältyy hintaan.
+          Puutarhajätteen noutopalvelu kiinteällä hinnalla. Tilaa nouto, niin tuomme suursäkin pihaasi ilmaiseksi. Täytä se lehdillä, risuilla ja oksilla, ja hoidamme poiskuljetuksen sovittuna päivänä. Jätemaksu sisältyy hintaan.
         </p>
         {area && <p class="lead">Noudamme {area.inessive}: {area.places.join(', ')} ja lähialueet.</p>}
         <div class="cta-row">
@@ -99,15 +99,23 @@ const three = price.firstBag + 2 * price.extraBag;
 
   <section class="sec">
     <div class="wrap">
+      <h2>Risujen ja oksien hävittäminen ilman polttamista</h2>
+      <p>Risujen poltto vaatii usein ilmoituksen, ja moni kunta rajoittaa polttamista taajamissa. Tarkista oman kuntasi jätehuoltomääräykset ennen polttamista.</p>
+      <p>Helpompi tapa on kerätä risut, oksat ja lehdet suursäkkiin ja tilata nouto. Hoidamme puutarhajätteen poiskuljetuksen ja toimitamme sen kierrätykseen, eikä sinun tarvitse ajaa peräkärryllä jäteasemalle.</p>
+    </div>
+  </section>
+
+  <section class="sec alt">
+    <div class="wrap">
       <h2>Noutoalue</h2>
-      <p>Noudamme Länsi-Uudellamaalla. Ajamme noudot alueittain, joten saman alueen tilaukset kulkevat samalla reitillä.</p>
+      <p>Noudamme puutarhajätettä Espoosta Raaseporiin. Ajamme noudot alueittain, joten saman alueen tilaukset kulkevat samalla reitillä.</p>
       <ul class="areas">
         {areas.map((a) => <li><a href={`/puutarhajatteen-nouto/${a.slug}/`}>{a.name}</a></li>)}
       </ul>
     </div>
   </section>
 
-  <section class="sec alt faq">
+  <section class="sec faq">
     <div class="wrap">
       <h2>Kysyttyä</h2>
       <details>
@@ -134,10 +142,14 @@ const three = price.firstBag + 2 * price.extraBag;
         <summary>Mihin jäte päätyy?</summary>
         <p>Toimitamme puutarhajätteen luvanvaraiseen vastaanottoon kierrätettäväksi.</p>
       </details>
+      <details>
+        <summary>Paljonko puutarhajätteen poiskuljetus maksaa?</summary>
+        <p>Ensimmäinen 1 m³ suursäkki {eur(price.firstBag)}, lisäsäkki samasta osoitteesta {eur(price.extraBag)}. Hinta sisältää noudon, jätemaksun ja uuden säkin, joten muita kuluja ei tule.</p>
+      </details>
     </div>
   </section>
 
-  <section class="sec" id="tilaa">
+  <section class="sec alt" id="tilaa">
     <div class="wrap">
       <h2>Tilaa säkki ja nouto</h2>
       <OrderForm defaultArea={area?.name} />

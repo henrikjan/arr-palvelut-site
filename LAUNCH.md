@@ -68,28 +68,14 @@ Amplify tarvitsee juuridomainille (arr-palvelut.fi ilman www) ALIAS/ANAME-tietue
 
 ## 4. Hakusanat
 
-Hakumääriä en pystynyt tarkistamaan (vaatii Google Ads Keyword Plannerin). Lista perustuu kilpailijoiden käyttämiin termeihin ja hakijan sanastoon.
+Perustuu Googlen hakuehdotuksiin (7.10.2026). Hakumäärät tarkistetaan Keyword Plannerissa.
 
-**Pääsanat (jokaisella sivulla H1 tai otsikko):**
-- puutarhajätteen nouto
-- puutarhajätteen nouto + kunta (Siuntio, Inkoo, Lohja, Vihti, Raasepori, Kirkkonummi)
-
-**Lähisanat (Google Ads, phrase match):**
-- risujen nouto, oksien nouto
-- haravointijätteen nouto, lehtien nouto
-- pihajätteen nouto
-- suursäkin nouto, suursäkki nouto, big bag nouto
-- noutosäkki
-
-**Ruotsiksi (Raasepori, Inkoo, Siuntio):**
-- hämtning av trädgårdsavfall
-- trädgårdsavfall storsäck
-- hämtning av ris
-
-**Negatiiviset avainsanat (oma vienti -aikeiset hakijat):**
-- aukioloajat, sortti, jäteasema, hinnasto, perävaunu, vuokraus, kompostori
-
-**Kohdennus:** Google Ads -sijainti vain palvelukuntiin, kaudet huhti-toukokuu ja syys-marraskuu.
+**Pääsanat (otsikot, H1):** puutarhajätteen nouto (+ kunta), puutarhajätteen noutopalvelu
+**Toissijaiset (H2, leipäteksti):** puutarhajätteen poiskuljetus, puutarhajätteen hävittäminen, risujen nouto, risujen hävittäminen, oksien hävittäminen, puutarhajäte säkki
+**Sisältökulma:** risujen poltto / risujen poltto ilmoitus, osio "Risujen ja oksien hävittäminen ilman polttamista"
+**Ruotsi:** trädgårdsavfall hämtning, trädgårdsavfall säck
+**Ei kannata:** pihajätteen nouto (ei signaalia), suursäkki yksinään (ostoaikeinen), lehtien (= sanomalehdet)
+**Negatiiviset (Ads):** kompostointi, kompostori, vastaanotto, aukioloajat, lajittelu, sekajätteeseen, multaa, sepeli, puuilo, motonet, ilmoitus
 
 ## 5. Kilpailijatilanne (tarkistettu 7.10.2026)
 
